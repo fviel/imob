@@ -1,3 +1,5 @@
+test:
+  filesource: -default
 spring:
   datasource:
     url: ${DB_URL}
@@ -15,6 +17,6 @@ spring:
 dotenv:
   enabled: true
   locations:
-    - file:./.env
+    - file:.env
 
   

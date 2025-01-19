@@ -2,7 +2,6 @@ package com.fviel.imob.real_state.components;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.stereotype.Component;
 import com.fviel.imob.person.entities.Person;

@@ -1,27 +1,25 @@
 package com.fviel.imob.common.controllers;
 
-import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.fviel.imob.config.AppProperties;
+import com.fviel.imob.config.services.AppEnvironmentVariables;
+import com.fviel.imob.config.services.AppProperties;
 
 @RestController
 @RequestMapping(value = "/imob/maintenance")
 public class MaintenanceController {
 
 
-    private final Environment environment;
-    private AppProperties appProperties;
+    private final AppEnvironmentVariables appEnvironmentVariables;
+    private final AppProperties appProperties;
 
     public MaintenanceController(
-
-        Environment environment,
+        AppEnvironmentVariables appEnvironmentVariables,
         AppProperties appProperties){
-        this.environment = environment;
+        this.appEnvironmentVariables = appEnvironmentVariables;
         this.appProperties = appProperties;
     }
 
@@ -38,8 +36,8 @@ public class MaintenanceController {
     @RequestMapping(value = "/v1/env", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<String> getEnvironmentData() {
-        String java_home = environment.getProperty("java.home");
-        return ResponseEntity.ok("{\nJAVA_HOME: " + java_home);        
+        String envs = appEnvironmentVariables.getEnvironmentVariablesAsJson();
+        return ResponseEntity.ok(envs);        
     }
 
     /**
@@ -49,9 +47,7 @@ public class MaintenanceController {
     @RequestMapping(value = "/v1/prop", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<String> getApplicationPropertyData() {
-        String props = appProperties.toString();
+        String props = appProperties.toJson();
         return ResponseEntity.ok(props);
-    }
-
-    
+    }    
 } 
