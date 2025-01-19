@@ -30,6 +30,6 @@ public class Person {
     @Column(nullable=false)
     private String name;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<RealState> realStateList;
 }
