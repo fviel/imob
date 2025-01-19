@@ -16,7 +16,7 @@ import com.fviel.imob.real_state.dtos.RealStateDto;
 import com.fviel.imob.real_state.entities.RealState;
 
 @RestController
-@RequestMapping("/api/realstate")
+@RequestMapping("/imob/api")
 public class RealStateController {
 
     private final RealStateDaoService rsDaoService;
@@ -26,7 +26,7 @@ public class RealStateController {
         this.rsBusiness = rsBusiness;
     }
 
-    @RequestMapping(value="/v1", method=RequestMethod.GET)
+    @RequestMapping(value="/v1/realstate", method=RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<Set<RealState>> listAll(){
         Set<RealState> rss = new HashSet<>(rsDaoService.getAllRealStates());
